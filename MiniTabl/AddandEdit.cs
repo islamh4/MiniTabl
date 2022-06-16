@@ -16,13 +16,19 @@ namespace MiniTabl
         Form1 form = new Form1();
         public AddandEdit()
         {
-            InitializeComponent();
+            InitializeComponent();   
         }
         public AddandEdit(Form1 from)
         {
             from1 = from;
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Обработка нажатия кнопки Сохранить   
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (from1.index >= 0)
@@ -30,7 +36,7 @@ namespace MiniTabl
                 DataGridViewRow data = from1.dataTabl.Rows[from1.index];
                 data.Cells[0].Value = textBox1.Text;
                 data.Cells[1].Value = textBox2.Text;
-                data.Cells[2].Value = textBox3.Text;
+                data.Cells[2].Value = textBox3.Text;     
             }
             else
             {
