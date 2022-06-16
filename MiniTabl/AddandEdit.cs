@@ -16,7 +16,7 @@ namespace MiniTabl
         Form1 form = new Form1();
         public AddandEdit()
         {
-            InitializeComponent();
+            InitializeComponent();   
         }
         public AddandEdit(Form1 from)
         {
