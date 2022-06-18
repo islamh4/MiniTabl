@@ -13,7 +13,7 @@ namespace MiniTabl
     public partial class AddandEdit : Form
     {
         Form1 from1;
-        Form1 form = new Form1();
+        Wordtabl wordtabl = new Wordtabl();
         public AddandEdit()
         {
             InitializeComponent();   
@@ -23,42 +23,25 @@ namespace MiniTabl
             from1 = from;
             InitializeComponent();
         }
-
-        /// <summary>
-        /// Обработка нажатия кнопки Сохранить   
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (from1.index >= 0)
+            wordtabl.Validation(out bool byl,textBox1, textBox2, textBox3);
+            if (byl)
             {
-                DataGridViewRow data = from1.dataTabl.Rows[from1.index];
-                data.Cells[0].Value = textBox1.Text;
-                data.Cells[1].Value = textBox2.Text;
-                data.Cells[2].Value = textBox3.Text;     
-            }
-            else
-            {
-                from1.dataTable.Rows.Add(textBox1.Text, textBox2.Text, textBox3.Text);
+                wordtabl.AddEdit(from1, textBox1, textBox2, textBox3);
+                this.Close();
             }
         }
 
         private void AddandEdit_Load(object sender, EventArgs e)
         {
-            if (from1.index >= 0)
-            {
-                DataGridViewRow row = from1.dataTabl.Rows[from1.index];
-                textBox1.Text = row.Cells[0].Value.ToString();
-                textBox2.Text = row.Cells[1].Value.ToString();
-                textBox3.Text = row.Cells[2].Value.ToString();
-            }
+            wordtabl.AddEditLoad(from1, textBox1, textBox2, textBox3);
         }
 
         private void AddandEdit_FormClosed(object sender, FormClosedEventArgs e)
         {
-            from1.index = -1;
-            from1.dataTabl.ClearSelection();
+            wordtabl.ClosedLoadAddandEdit(from1);
         }
+        
     }
 }
